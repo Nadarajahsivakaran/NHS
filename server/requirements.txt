@@ -1,6 +1,7 @@
-fastapi
-uvicorn
-websockets
-speechrecognition
-googletrans==4.0.0-rc1
-pydub
+openai-whisper
+ffmpeg-python
+transformers
+torch
+langdetect
+deep-translator
+pycountry
