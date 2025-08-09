@@ -4,7 +4,7 @@ import os
 import urllib3
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-NGROK_URL = "https://bdaa7d65176b.ngrok-free.app/transcribe"
+NGROK_URL = "https://427ed676e908.ngrok-free.app/transcribe"
 
 def transcribe_file(file_path):
     if not os.path.exists(file_path):

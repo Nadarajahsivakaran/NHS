@@ -1,6 +1,7 @@
-from flask import Blueprint, jsonify,request
+from flask import Blueprint, jsonify,request,send_file,abort
 from app.db import get_db_connection
 from datetime import datetime, date, time, timedelta
+import os
 
 admin_bp = Blueprint("admin", __name__)
 
@@ -142,3 +143,21 @@ def update_appointment(appointment_id):
 
     except Exception as e:
         return jsonify({"error": "Failed to update appointment", "details": str(e)}), 500
+
+UPLOAD_FOLDER = r"C:\Users\nadar\Desktop\Computer science master project\NHS\server\uploads"
+
+@admin_bp.route('/video/<filename>')
+def get_video(filename):
+    print(f"Requested filename: {filename}")
+    print("Files in uploads folder:", os.listdir(UPLOAD_FOLDER))
+
+    file_path = os.path.join(UPLOAD_FOLDER, filename)
+    print(f"Full file path: {file_path}")
+
+    if not os.path.isfile(file_path):
+        print("File not found!")
+        abort(404, description="File not found")
+
+    print("File found. Sending file...")
+    return send_file(file_path, mimetype="video/mp4")
+

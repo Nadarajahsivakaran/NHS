@@ -62,7 +62,7 @@ def upload_video():
 
         language = result.get("language", "")
         transcription = result.get("transcription", "")
-        summary = result.get("summary", "")
+        summary = result.get("translation", "")
 
         # Update the video record with transcription results and status
         cursor.execute("""
