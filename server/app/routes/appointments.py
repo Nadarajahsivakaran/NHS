@@ -9,7 +9,7 @@ def get_appointments():
     try:
         conn = get_db_connection()
         cursor = conn.cursor(dictionary=True)
-        cursor.execute("SELECT * FROM appointments WHERE isDelete = 0 ORDER BY date, time")
+        cursor.execute("SELECT * FROM appointments  ORDER BY id DESC")
         rows = cursor.fetchall()
         cursor.close()
         conn.close()
@@ -35,7 +35,7 @@ def add_appointment():
     date = data.get("date")
     time = data.get("time")
     reason = data.get("reason")
-    userid = data.get("userid")
+    userid = data.get("id")
 
     if not all([date, time, reason, userid]):
         return jsonify({"error": "Missing required fields"}), 400

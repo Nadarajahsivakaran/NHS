@@ -59,7 +59,8 @@ def login():
             "user": {
                 "email": user["email"],
                 "name": user["name"],
-                "type": user["type"]
+                "type": user["type"],
+                "id": user["id"]
             }
         }), 200
     except Exception as e:

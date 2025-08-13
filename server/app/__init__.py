@@ -5,7 +5,15 @@ from .routes import auth_bp, upload_bp, appointments_bp, admin_bp
 
 def create_app():
     app = Flask(__name__)
-    CORS(app)
+    # Proper CORS config
+    CORS(
+        app,
+        resources={r"/*": {"origins": "http://localhost:3000"}},
+        supports_credentials=True
+    )
+
+    # Prevent trailing slash redirects
+    app.url_map.strict_slashes = False
 
     app.config.from_object("app.config.Config")
 
